@@ -17,7 +17,6 @@ typedef nx_struct info_msg{
 #define WALKING 2
 #define RUNNING 3
 #define FALLING 4
-#define TEST 6
 
 enum{
 		AM_MY_MSG = 6,
