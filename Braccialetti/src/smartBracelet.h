@@ -1,11 +1,18 @@
 #ifndef SMART_BRACELET_H
 #define SMART_BRACELET_H
 
+//messaggio broadcast accoppiamento
 typedef nx_struct coupling_msg{
 	nx_uint16_t key;
 	nx_uint16_t address;
 }coupling_msg_t;
 
+//messaggio conferma accoppiamento unicast
+typedef nx_struct confirm_msg{
+	nx_uint8_t confirm;
+}confirm_msg_t;
+
+//messaggio info braccialetto
 typedef nx_struct info_msg{
 	nx_uint8_t pos_x;
 	nx_uint8_t pos_y;
