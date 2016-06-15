@@ -5,7 +5,7 @@
  *  
  */
 
-#include "sendAck.h"
+
 #include "smartBracelet.h"
 
 configuration smartBraceletAppC {}
