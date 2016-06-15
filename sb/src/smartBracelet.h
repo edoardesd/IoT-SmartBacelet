@@ -3,26 +3,26 @@
 
 //messaggio broadcast accoppiamento
 typedef nx_struct coupling_msg{
-	nx_uint8_t msg_type;
+	nx_uint8_t type;
 	nx_uint16_t key;
 	nx_uint16_t address;
-	nx_uint8_t msg_id_b;
+	nx_uint8_t id_b;
 }coupling_msg_t;
 
 //messaggio conferma accoppiamento unicast
 typedef nx_struct confirm_msg{
-	nx_uint8_t msg_type;
+	nx_uint8_t type;
 	nx_uint8_t confirm;
-	nx_uint8_t msg_id_u;
+	nx_uint8_t id_u;
 }confirm_msg_t;
 
 //messaggio info braccialetto
 typedef nx_struct info_msg{
-	nx_uint8_t msg_type;
+	nx_uint8_t type;
 	nx_uint8_t pos_x;
 	nx_uint8_t pos_y;
 	nx_uint8_t state;
-	nx_uint16_t msg_counter;
+	nx_uint16_t id_info;
 } info_msg_t;
 
 //tipologia messaggi

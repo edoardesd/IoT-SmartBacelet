@@ -65,12 +65,6 @@ node2.bootAtTime(time2);
 print ">>>Will boot at time", time2/t.ticksPerSecond(), "[sec]";
 
 
-#print "Creating node 3...";
-#node3 = t.getNode(3);
-#time3 = 1*t.ticksPerSecond();
-#node3.bootAtTime(time3);
-#print ">>>Will boot at time", time3/t.ticksPerSecond(), "[sec]";
-
 print "Creating radio channels..."
 f = open(topofile, "r");
 lines = f.readlines()
@@ -87,7 +81,6 @@ noise = open(modelfile, "r")
 lines = noise.readlines()
 compl = 0;
 mid_compl = 0;
-
 
 print "Reading noise model data file:", modelfile;
 print "Loading:",
@@ -111,7 +104,7 @@ for i in range(1, 3):
 
 print "Start simulation with TOSSIM! \n\n\n";
 
-for i in range(0,2000):
+for i in range(0,500):
 	t.runNextEvent()
 	
 print "\n\n\nSimulation finished!";
