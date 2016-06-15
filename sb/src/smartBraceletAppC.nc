@@ -15,7 +15,8 @@ implementation {
 	components new AMSenderC(AM_MY_MSG);
 	components new AMReceiverC(AM_MY_MSG);
 	components ActiveMessageC;
-	components new TimerMilliC();
+	components new TimerMilliC() as TimerCoupling;
+	components new TimerMilliC() as TimerChild;
 	//components new UniTimerMilliC();
 	//components new FakeSensorC();
 
@@ -36,8 +37,8 @@ implementation {
 	App.PacketAcknowledgements->ActiveMessageC;
 
 	//Timer interface
-	App.Timer0 -> TimerMilliC;
-	//App.UniTimer -> UniTimerMilliC;
+	App.Timer0 -> TimerCoupling;
+	App.Timer1 -> TimerChild;
 
 	//Fake Sensor read
 	//App.Read -> FakeSensorC;

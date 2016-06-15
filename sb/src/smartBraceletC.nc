@@ -10,7 +10,8 @@ module smartBraceletC{
 		interface AMSend;
 		interface SplitControl;
 		interface Receive;
-		interface Timer<TMilli> as Timer0;
+		interface Timer<TMilli> as Timer0; //timer valido per l'accoppiamento
+		interface Timer<TMilli> as Timer1; //timer per i messaggi del figlio
 	}
 }
 implementation{
@@ -30,6 +31,8 @@ implementation{
 
 	//funzione invio messaggi broadcast
 	task void sendBroadcast();
+	task void sendChildMsg();
+	task void sendUniCoupling();
 
 	//***************** Boot interface ********************//
 	event void Boot.booted(){
@@ -51,14 +54,14 @@ implementation{
 		if(error == SUCCESS) {
 			dbg("radio_send", " Avvio Timer0 al tempo %s che ogni 10 secondi invia un messaggio broadcast per richiedere accoppiamento\n", sim_time_string());
 			call Timer0.startPeriodic(10000);
-			}
+		}
 		else{	
-			dbg("role","Errore accensione radio.\n");
+				dbg("role","Errore accensione radio.\n");
 			call SplitControl.start();
 		}
 	}
 	
-	//***************** Timer0 interface ********************//
+	//***************** Timer for coulping interface ********************//
 	event void Timer0.fired(){
 		dbg("radio_send", "Timer0 scattato al tempo %s \n", sim_time_string());
 		post sendBroadcast();
@@ -117,20 +120,20 @@ implementation{
 	
 	//********************* AMSend (ricevo ack)) interface ****************//
 	event void AMSend.sendDone(message_t *msg, error_t error){
-		
 	
-		  if(&packet == msg && error == SUCCESS ) {
-			dbg("radio_send", "Packet sent...");
-
-			if ( call PacketAcknowledgements.wasAcked( msg ) ) {
-				dbg_clear("radio_ack", "and ack received");
-				
-			} else {
-				dbg_clear("radio_ack", "but ack was not received");
-			}
-			dbg_clear("radio_send", " at time %s \n", sim_time_string());
-		}	
-		
+		//	
+		//		  if(&packet == msg && error == SUCCESS ) {
+		//			dbg("radio_send", "Packet sent...");
+		//
+		//			if ( call PacketAcknowledgements.wasAcked( msg ) ) {
+		//				dbg_clear("radio_ack", "and ack received");
+		//				
+		//			} else {
+		//				dbg_clear("radio_ack", "but ack was not received");
+		//			}
+		//			dbg_clear("radio_send", " at time %s \n", sim_time_string());
+		//		}	
+	
 	}
 
 	event void SplitControl.stopDone(error_t error){
@@ -138,16 +141,16 @@ implementation{
 	}
 
 	
-
+	//********************* Receive interface (cosa avviene quando ricevo un msg) ****************//
 	event message_t * Receive.receive(message_t *msg, void *payload, uint8_t len){
-		
+	
 		coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
 		confirm_msg_t* confirm_mess = (confirm_msg_t*)payload;
 		dbg("radio_rec", "Ho ricevuto un messaggio.\n");
 		dbg("radio_rec", "Il tipo di messaggio ricevuto e': %hhu\n", coupling_mess->type);
 
 		if ( coupling_mess->type == BROADCAST ) {
-			coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
+			//coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
 			dbg("radio_rec", "Sono dentro al messaggio broadcast ricevuto.\n");
 			if(coupling_mess->key == matchKey){
 				dbg("radio_rec","Ho ricevuto richiesta di accoppiamento BROADCAST! Nodo: %hhu con chiave(myKey): %hhu. \nAccoppiato con Nodo: %hhu:  messKey: %hhu, \n Invio messaggio UNICAST per conferma.\n", TOS_NODE_ID, myKey, coupling_mess->address, coupling_mess->key  );
@@ -155,17 +158,33 @@ implementation{
 				post sendUniCoupling();
 			}
 		}
-		
+	
 		if ( confirm_mess ->type == UNICAST ) {
 			dbg("radio_rec", "Sono dentro al messaggio unicast\n");
 			if (confirm_mess->confirm == 1){
 				call Timer0.stop();
+				dbg("radio_rec", "Ok, mi fermo nel mandare messaggi BROADCAST\n");
 				coupled = TRUE;
 				dbg("radio_rec", "Accoppiamento UNICAST effettuato\n");
 				
-}
-		}
+				if(TOS_NODE_ID==2){
+					call Timer1.startPeriodic(1000);
+					}
 	
+			}
+		}
 		return msg;
 	}
-}
+	
+	//***************** Timer1 interface for sending child msg ********************//
+	event void Timer1.fired(){
+		dbg("radio_send", "Timer1 scattato al tempo %s \n", sim_time_string());
+		post sendChildMsg();
+	}
+	
+	//***************** Task send unicast Coupling ********************//
+	task void sendChildMsg() {
+			dbg("radio_send", "I'm the child, I'm sending a message\n");
+	}
+	
+} //end of implementation
