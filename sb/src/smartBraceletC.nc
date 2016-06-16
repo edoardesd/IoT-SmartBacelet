@@ -16,6 +16,7 @@ module smartBraceletC{
 		//timer
 		interface Timer<TMilli> as Timer0; //timer valido per l'accoppiamento
 		interface Timer<TMilli> as Timer1; //timer per i messaggi del figlio
+		interface Timer<TMilli> as Timer2; //timer di 60 secondi che scatta quando il padre non riceve informazioni del figlio
 	}
 }
 implementation{
@@ -33,6 +34,10 @@ implementation{
 	
 	uint16_t matchAddress;
 	bool coupled = FALSE;
+
+	//Ultime coordinate del figlio mandate al padre
+	uint16_t lastX;
+	uint16_t lastY;
 	
 	message_t packet;
 
@@ -40,6 +45,10 @@ implementation{
 	task void sendBroadcast();
 	task void sendChildMsg();
 	task void sendUniCoupling();
+
+	//funzioni per invio messaggi pericolo
+	task void missingAlarm();
+	task void fallAlarm();
 	
 	//funzione per generare lo status del figlio
 	//async command uint8_t generateChildStatus();
@@ -47,12 +56,22 @@ implementation{
 	//***************** Boot interface ********************//
 	event void Boot.booted(){
 		if (TOS_NODE_ID == 1){
-			myKey = 12;
-			matchKey = 33;
+			myKey = 11;
+			matchKey = 21;
 		}
 	
 		if (TOS_NODE_ID == 2){
-			myKey = 33;
+			myKey = 21;
+			matchKey = 11;
+		}
+
+		if (TOS_NODE_ID == 3){
+			myKey = 12;
+			matchKey = 22;
+		}
+	
+		if (TOS_NODE_ID == 4){
+			myKey = 22;
 			matchKey = 12;
 		}
 
@@ -75,6 +94,12 @@ implementation{
 	event void Timer0.fired(){
 		dbg("radio_send", "Timer0 scattato al tempo %s \n", sim_time_string());
 		post sendBroadcast();
+	}
+
+	//***************** Timer for allert message ********************//
+	event void Timer2.fired(){
+		dbg("radio_send", "Timer2 scattato al tempo %s. Non ricevo informazioni figlio da 60 secondi. \n", sim_time_string());
+		post missingAlarm();
 	}
 	
 	//***************** Task send messaggio in broadcast ********************//
@@ -167,7 +192,7 @@ implementation{
 				dbg("radio_rec","Ho ricevuto richiesta di accoppiamento BROADCAST! Nodo: %hhu con chiave(myKey): %hhu. \nAccoppiato con Nodo: %hhu:  messKey: %hhu, \n Invio messaggio UNICAST per conferma.\n", TOS_NODE_ID, myKey, coupling_mess->address, coupling_mess->key  );
 				matchAddress = coupling_mess->address;
 				post sendUniCoupling();
-			}
+			}else { dbg("radio_rec", "Il messaggio broadcast ricevuto dal nodo %hhu non ha come mittente il nodo con il quale devo accoppiarmi.\n", coupling_mess->address); }
 		}
 	
 		if ( confirm_mess ->type == UNICAST ) {
@@ -181,12 +206,23 @@ implementation{
 				if((TOS_NODE_ID%2)==0){
 					call Timer1.startPeriodic(10000);
 				}
+				if ((TOS_NODE_ID%2)!=0){
+					call Timer2.startPeriodic(60000);
+				}
 			}
 		}
 		dbg("radio_rec", "coupled e': %hhu\n", coupled);
 		if(coupled==TRUE){
 			if(info_mess-> type == INFO){
 				dbg("radio_rec", "Ho ricevuto il messaggio dal figlio\n");
+				dbg("radio_rec", "Lo stato del figlio è %hhu.\n", info_mess->state);
+				lastX = info_mess-> pos_x;
+				lastY = info_mess-> pos_y;
+				call Timer2.stop();
+				call Timer2.startPeriodic(60000);
+				if ((info_mess -> state) == FALLING) {
+					post fallAlarm();
+				}
 			}
 		}
 		return msg;
@@ -307,7 +343,8 @@ implementation{
 		}
 	}
 	
-	
+	task void fallAlarm(){ dbg_clear("radio_pack", "Sono in fallAlarm.\n"); }
+	task void missingAlarm(){ dbg_clear("radio_pack", "Sono in missingAlarm\n"); }
 	
 	
 } //end of implementation
