@@ -1,20 +1,26 @@
 #include "smartBracelet.h"
+#include "Timer.h"
 
 module smartBraceletC{
 	
 	uses {
 		interface Boot;
+		interface Random;
 		interface AMPacket;
 		interface Packet;
 		interface PacketAcknowledgements;
 		interface AMSend;
 		interface SplitControl;
 		interface Receive;
+	
+		//timer
 		interface Timer<TMilli> as Timer0; //timer valido per l'accoppiamento
 		interface Timer<TMilli> as Timer1; //timer per i messaggi del figlio
 	}
 }
 implementation{
+
+	uint8_t test = 0;
 
 	//chiavi accoppiamento
 	uint16_t myKey;
@@ -23,6 +29,7 @@ implementation{
 	//Contatori messaggi
 	uint8_t counterBroad=0;
 	uint8_t counterUni=0;
+	uint8_t counterInfo=0;
 	
 	uint16_t matchAddress;
 	bool coupled = FALSE;
@@ -33,6 +40,9 @@ implementation{
 	task void sendBroadcast();
 	task void sendChildMsg();
 	task void sendUniCoupling();
+	
+	//funzione per generare lo status del figlio
+	//async command uint8_t generateChildStatus();
 
 	//***************** Boot interface ********************//
 	event void Boot.booted(){
@@ -76,7 +86,7 @@ implementation{
 		mess->id_b = counterBroad; //contatore dei messaggi
 		counterBroad++;
 	
-		dbg_clear("radio_pack","Messaggio BROADCAST: %hhu - Tempo: %s \n", mess->id_b,  sim_time_string());
+		dbg_clear("radio_pack","Messaggio BROADCAST: %u - Tempo: %s \n", mess->id_b,  sim_time_string());
 	
 		//call PacketAcknowledgements.requestAck( &packet ); //chiamata richiesta ACK. Da NON mettere in BROADCAST
 
@@ -99,7 +109,7 @@ implementation{
 		confirm_msg_t* mess=(confirm_msg_t*)(call Packet.getPayload(&packet,sizeof(confirm_msg_t)));
 		mess->type = UNICAST;
 		mess->id_u = counterUni;
-		mess->confirm = 1;
+		mess->confirm = 1; //non dovrebbe servire in teoria
 
 		dbg("radio_send", "Invio un messaggio in UNICAST al nodo %hhu per conferma accoppiamento al tempo %s \n", matchAddress, sim_time_string());
 		dbg("radio_send", "Conferma: %hhu \n, tipo: %hhu, numero messaggio: %hhu\n", mess->confirm, mess->type, mess->id_u);
@@ -146,8 +156,9 @@ implementation{
 	
 		coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
 		confirm_msg_t* confirm_mess = (confirm_msg_t*)payload;
-		dbg("radio_rec", "Ho ricevuto un messaggio.\n");
-		dbg("radio_rec", "Il tipo di messaggio ricevuto e': %hhu\n", coupling_mess->type);
+		info_msg_t* info_mess = (info_msg_t*)payload;
+		//dbg("radio_rec", "Ho ricevuto un messaggio.\n");
+		//dbg("radio_rec", "Il tipo di messaggio ricevuto e': %hhu\n", coupling_mess->type);
 
 		if ( coupling_mess->type == BROADCAST ) {
 			//coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
@@ -166,11 +177,16 @@ implementation{
 				dbg("radio_rec", "Ok, mi fermo nel mandare messaggi BROADCAST\n");
 				coupled = TRUE;
 				dbg("radio_rec", "Accoppiamento UNICAST effettuato\n");
-				
-				if(TOS_NODE_ID==2){
-					call Timer1.startPeriodic(1000);
-					}
 	
+				if((TOS_NODE_ID%2)==0){
+					call Timer1.startPeriodic(10000);
+				}
+			}
+		}
+		dbg("radio_rec", "coupled e': %hhu\n", coupled);
+		if(coupled==TRUE){
+			if(info_mess-> type == INFO){
+				dbg("radio_rec", "Ho ricevuto il messaggio dal figlio\n");
 			}
 		}
 		return msg;
@@ -182,9 +198,116 @@ implementation{
 		post sendChildMsg();
 	}
 	
-	//***************** Task send unicast Coupling ********************//
+	//	async command uint8_t generateChildStatus(){
+	//		uint8_t msgStatus;
+	//		uint16_t var = call Random.rand16();
+	//		switch (var) {
+	//			dbg_clear("radio_pack", "random: %hhu\n", var);
+	//			case 0: 
+	//			msgStatus = 11;
+	//			break;
+	//			case 1: 
+	//			msgStatus = 11;
+	//			break;
+	//			case 2: 
+	//			msgStatus = 11;
+	//			break;
+	//			case 3: 
+	//			msgStatus = 12;
+	//			break;
+	//			case 4: 
+	//			msgStatus = 12;
+	//			break;
+	//			case 5: 
+	//			msgStatus = 12;
+	//			break;
+	//			case 6: 
+	//			msgStatus = 13;
+	//			break;
+	//			case 7: 
+	//			msgStatus = 13;
+	//			break;
+	//			case 8: 
+	//			msgStatus = 13;
+	//			break;
+	//			case 9: msgStatus = 14;
+	//			default: msgStatus = 10;
+	//			break;
+	//		} 
+	//	
+	//		return msgStatus;
+	//	}
+	
+	
+	//***************** Task send child msg ********************//
 	task void sendChildMsg() {
-			dbg("radio_send", "I'm the child, I'm sending a message\n");
+	
+		info_msg_t* mess=(info_msg_t*)(call Packet.getPayload(&packet,sizeof(info_msg_t)));
+	
+		uint8_t msgStatus;
+		uint16_t var = (call Random.rand16() % 10) + 1;
+		dbg_clear("radio_pack", "random: %hhu\n", var);
+		switch (var) {
+			case 1: 
+				msgStatus = 11;
+				break;
+			case 2: 
+				msgStatus = 11;
+				break;
+			case 3: 
+				msgStatus = 11;
+				break;
+			case 4: 
+				msgStatus = 12;
+				break;
+			case 5: 
+				msgStatus = 12;
+				break;
+			case 6: 
+				msgStatus = 12;
+				break;
+			case 7: 
+				msgStatus = 13;
+				break;
+			case 8: 
+				msgStatus = 13;
+				break;
+			case 9: 
+				msgStatus = 13;
+				break;
+			case 10: 
+				msgStatus = 14;
+				break;
+			default: 
+				msgStatus = 10;
+				break;
+		} 
+	
+		//creo il messaggio
+		mess->type = INFO; //mesasggio di tipo 3 = INFO
+		mess->id_info = counterInfo; //contatore dei messaggi
+		mess->pos_x = call Random.rand16();
+		mess->pos_y = call Random.rand16();
+		mess->state = msgStatus;
+	
+		counterInfo++;
+		dbg("radio_send", "I'm the child, I'm sending a message\n");
+		dbg_clear("radio_pack","Messaggio di info: %hhu - Tempo: %s \n", mess->id_info,  sim_time_string());
+	
+
+		if(call AMSend.send(matchAddress,&packet,sizeof(info_msg_t)) == SUCCESS){
+	
+			dbg_clear("radio_pack","\t\t Contenuto del messaggio info: \n" );
+			dbg_clear("radio_pack", "\t\t Tipo: %hhu \n ", mess->state);
+			dbg_clear("radio_pack", "\t\t Coordinata X: %hhu \n", mess->pos_x);
+			dbg_clear("radio_pack", "\t\t Coordinata Y: %hhu \n", mess->pos_y);
+			dbg_clear("radio_send", "\n ");
+			dbg_clear("radio_pack", "\n");
+ 
+		}
 	}
+	
+	
+	
 	
 } //end of implementation

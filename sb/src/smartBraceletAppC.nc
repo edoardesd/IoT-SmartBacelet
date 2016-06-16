@@ -12,12 +12,12 @@ configuration smartBraceletAppC {}
 implementation {
 
 	components MainC, smartBraceletC as App;
+	components RandomC;
 	components new AMSenderC(AM_MY_MSG);
 	components new AMReceiverC(AM_MY_MSG);
 	components ActiveMessageC;
 	components new TimerMilliC() as TimerCoupling;
 	components new TimerMilliC() as TimerChild;
-	//components new UniTimerMilliC();
 	//components new FakeSensorC();
 
 	//Boot interface
@@ -40,6 +40,10 @@ implementation {
 	App.Timer0 -> TimerCoupling;
 	App.Timer1 -> TimerChild;
 
+
+//Random interface and its initialization	
+	App.Random -> RandomC;
+	RandomC <- MainC.SoftwareInit;
 	//Fake Sensor read
 	//App.Read -> FakeSensorC;
 }

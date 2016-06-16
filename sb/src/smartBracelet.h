@@ -19,8 +19,8 @@ typedef nx_struct confirm_msg{
 //messaggio info braccialetto
 typedef nx_struct info_msg{
 	nx_uint8_t type;
-	nx_uint8_t pos_x;
-	nx_uint8_t pos_y;
+	nx_uint16_t pos_x;
+	nx_uint16_t pos_y;
 	nx_uint8_t state;
 	nx_uint16_t id_info;
 } info_msg_t;
@@ -37,7 +37,7 @@ typedef nx_struct info_msg{
 #define FALLING 14
 
 enum{
-	AM_MY_MSG = 6,
+	AM_MY_MSG = 4,
 };
 
 #endif /* SMART_BRACELET_H */
