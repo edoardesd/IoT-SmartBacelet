@@ -18,6 +18,7 @@ implementation {
 	components ActiveMessageC;
 	components new TimerMilliC() as TimerCoupling;
 	components new TimerMilliC() as TimerChild;
+	components new TimerMilliC() as TimerFather;
 	//components new FakeSensorC();
 
 	//Boot interface
@@ -39,6 +40,7 @@ implementation {
 	//Timer interface
 	App.Timer0 -> TimerCoupling;
 	App.Timer1 -> TimerChild;
+	App.Timer2 -> TimerFather;
 
 
 //Random interface and its initialization	
