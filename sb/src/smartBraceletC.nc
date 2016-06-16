@@ -21,11 +21,11 @@ module smartBraceletC{
 }
 implementation{
 
-	uint8_t test = 0;
+	uint8_t test = 0; //non mi ricordo per cosa fosse
 
 	//chiavi accoppiamento
-	uint16_t myKey;
-	uint16_t matchKey;
+	uint8_t myKey[RANDOMKEYLENGHT];
+	uint8_t matchKey[RANDOMKEYLENGHT];
 	
 	//Contatori messaggi
 	uint8_t counterBroad=0;
@@ -55,24 +55,32 @@ implementation{
 
 	//***************** Boot interface ********************//
 	event void Boot.booted(){
+	int i;
 		if (TOS_NODE_ID == 1){
-			myKey = 11;
-			matchKey = 21;
-		}
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			myKey[i] = 11;
+			matchKey[i] = 21;
+			dbg("role","myKey: %hhu", myKey[i]);
+			}
+			dbg("role","array: %u\n", myKey);
+		} 
 	
 		if (TOS_NODE_ID == 2){
-			myKey = 21;
-			matchKey = 11;
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			myKey[i] = 21;
+			matchKey[i] = 11;}
 		}
 
 		if (TOS_NODE_ID == 3){
-			myKey = 12;
-			matchKey = 22;
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			myKey[i] = 12;
+			matchKey[i] = 22;}
 		}
 	
 		if (TOS_NODE_ID == 4){
-			myKey = 22;
-			matchKey = 12;
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			myKey[i] = 22;
+			matchKey[i] = 12;}
 		}
 
 		call SplitControl.start();
@@ -104,8 +112,12 @@ implementation{
 	
 	//***************** Task send messaggio in broadcast ********************//
 	task void sendBroadcast() {
+	int i;
 		coupling_msg_t* mess=(coupling_msg_t*)(call Packet.getPayload(&packet,sizeof(coupling_msg_t)));
-		mess->key = myKey; //gli do la chiave
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			mess->key[i]= myKey[i];
+			}
+		//mess->key = myKey; //gli do la chiave
 		mess->address = TOS_NODE_ID; //gli do il mio indirizzo
 		mess->type = BROADCAST; //mesasggio di tipo 1 = BROADCAST
 		mess->id_b = counterBroad; //contatore dei messaggi
@@ -184,11 +196,20 @@ implementation{
 		info_msg_t* info_mess = (info_msg_t*)payload;
 		//dbg("radio_rec", "Ho ricevuto un messaggio.\n");
 		//dbg("radio_rec", "Il tipo di messaggio ricevuto e': %hhu\n", coupling_mess->type);
-
+	
+		bool eqKey = 1;
+		int i;
+		for (i=0; i<RANDOMKEYLENGHT; i++){
+			if(coupling_mess->key[i]!= matchKey[i])
+				eqKey = 0;
+			}
+		
 		if ( coupling_mess->type == BROADCAST ) {
 			//coupling_msg_t* coupling_mess = (coupling_msg_t*)payload;
 			dbg("radio_rec", "Sono dentro al messaggio broadcast ricevuto.\n");
-			if(coupling_mess->key == matchKey){
+			
+			
+			if(eqKey){
 				dbg("radio_rec","Ho ricevuto richiesta di accoppiamento BROADCAST! Nodo: %hhu con chiave(myKey): %hhu. \nAccoppiato con Nodo: %hhu:  messKey: %hhu, \n Invio messaggio UNICAST per conferma.\n", TOS_NODE_ID, myKey, coupling_mess->address, coupling_mess->key  );
 				matchAddress = coupling_mess->address;
 				post sendUniCoupling();

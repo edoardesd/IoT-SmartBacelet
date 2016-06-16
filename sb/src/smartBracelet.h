@@ -1,10 +1,12 @@
 #ifndef SMART_BRACELET_H
 #define SMART_BRACELET_H
 
+#define RANDOMKEYLENGHT 20
+
 //messaggio broadcast accoppiamento
 typedef nx_struct coupling_msg{
 	nx_uint8_t type;
-	nx_uint16_t key;
+	nx_uint8_t key[RANDOMKEYLENGHT];
 	nx_uint16_t address;
 	nx_uint8_t id_b;
 }coupling_msg_t;
@@ -35,6 +37,8 @@ typedef nx_struct info_msg{
 #define WALKING 12
 #define RUNNING 13
 #define FALLING 14
+
+
 
 enum{
 	AM_MY_MSG = 4,
