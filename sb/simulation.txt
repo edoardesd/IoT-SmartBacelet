@@ -1,0 +1,567 @@
+DEBUG (1): Genero le chiavi casuali e le pre-carico nel nodo!.
+
+DEBUG (1): La chiave del nodo 1 e': 11111111111111111111
+
+
+
+
+DEBUG (4): Genero le chiavi casuali e le pre-carico nel nodo!.
+
+DEBUG (4): La chiave del nodo 4 e': 22222222222222222222
+
+
+
+
+DEBUG (3): Genero le chiavi casuali e le pre-carico nel nodo!.
+
+DEBUG (3): La chiave del nodo 3 e': 12121212121212121212
+
+
+
+
+DEBUG (2): Genero le chiavi casuali e le pre-carico nel nodo!.
+
+DEBUG (2): La chiave del nodo 2 e': 21212121212121212121
+
+
+
+
+DEBUG (1): Avvio Timer0 al tempo 0:0:0.000000010 che ogni 5 secondi invia un messaggio broadcast per richiedere accoppiamento
+
+DEBUG (2): Avvio Timer0 al tempo 0:0:0.000000010 che ogni 5 secondi invia un messaggio broadcast per richiedere accoppiamento
+
+DEBUG (4): Avvio Timer0 al tempo 0:0:0.000000010 che ogni 5 secondi invia un messaggio broadcast per richiedere accoppiamento
+
+DEBUG (3): Avvio Timer0 al tempo 0:0:0.000000010 che ogni 5 secondi invia un messaggio broadcast per richiedere accoppiamento
+
+DEBUG (1): Timer0 scattato al tempo 0:0:4.882812510. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (3): Timer0 scattato al tempo 0:0:4.882812510. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (4): Timer0 scattato al tempo 0:0:4.882812510. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (2): Timer0 scattato al tempo 0:0:4.882812510. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (1): Messaggio BROADCAST numero 0 - Tempo: 0:0:4.882812520 
+Il messaggio BROADCAST numero 0 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 11111111111111111111
+			 Indirizzo: 1 
+			 Tipo: 1 
+
+
+DEBUG (3): Messaggio BROADCAST numero 0 - Tempo: 0:0:4.882812520 
+Il messaggio BROADCAST numero 0 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 12121212121212121212
+			 Indirizzo: 3 
+			 Tipo: 1 
+
+
+DEBUG (4): Messaggio BROADCAST numero 0 - Tempo: 0:0:4.882812520 
+Il messaggio BROADCAST numero 0 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 22222222222222222222
+			 Indirizzo: 4 
+			 Tipo: 1 
+
+
+DEBUG (2): Messaggio BROADCAST numero 0 - Tempo: 0:0:4.882812520 
+Il messaggio BROADCAST numero 0 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 21212121212121212121
+			 Indirizzo: 2 
+			 Tipo: 1 
+
+
+DEBUG (4): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (4): Il messaggio BROADCAST ricevuto dal nodo 2 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (1): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (1): Ho ricevuto richiesta di accoppiamento BROADCAST dal nodo corretto! Nodo: 1 accoppiato con nodo: 2.
+ Invio messaggio UNICAST per conferma.
+
+DEBUG (3): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (3): Il messaggio BROADCAST ricevuto dal nodo 2 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (1): Invio un messaggio in UNICAST al nodo 2 al tempo 0:0:4.884582539 per stoppare messaggi BROADCAST. Nodo trovato.
+
+DEBUG (3): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (3): Ho ricevuto richiesta di accoppiamento BROADCAST dal nodo corretto! Nodo: 3 accoppiato con nodo: 4.
+ Invio messaggio UNICAST per conferma.
+
+DEBUG (2): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (2): Il messaggio BROADCAST ricevuto dal nodo 4 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (1): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (1): Il messaggio BROADCAST ricevuto dal nodo 4 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (3): Invio un messaggio in UNICAST al nodo 4 al tempo 0:0:4.889968860 per stoppare messaggi BROADCAST. Nodo trovato.
+
+Il messaggio UNICAST numero 0 e' stato inviato correttamente al nodo 4 
+
+		 Contenuto del messaggio unicast 
+			 Contatore: 0 
+ 			 Tipo: 2 
+			 Conferma: 1 
+
+
+ DEBUG (4): Ho ricevuto un messaggio di tipo UNICAST.
+
+DEBUG (4): Non mando altri messaggi BROADCAST
+DEBUG (4): Accoppiamento UNICAST effettuato
+
+DEBUG (3): Timer0 scattato al tempo 0:0:9.765625010. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (1): Timer0 scattato al tempo 0:0:9.765625010. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (2): Timer0 scattato al tempo 0:0:9.765625010. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (3): Messaggio BROADCAST numero 1 - Tempo: 0:0:9.765625020 
+Il messaggio BROADCAST numero 1 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 12121212121212121212
+			 Indirizzo: 3 
+			 Tipo: 1 
+
+
+DEBUG (1): Messaggio BROADCAST numero 1 - Tempo: 0:0:9.765625020 
+Il messaggio BROADCAST numero 1 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 11111111111111111111
+			 Indirizzo: 1 
+			 Tipo: 1 
+
+
+DEBUG (2): Messaggio BROADCAST numero 1 - Tempo: 0:0:9.765625020 
+Il messaggio BROADCAST numero 1 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 21212121212121212121
+			 Indirizzo: 2 
+			 Tipo: 1 
+
+
+DEBUG (4): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (4): Il messaggio BROADCAST ricevuto dal nodo 2 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (3): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (3): Il messaggio BROADCAST ricevuto dal nodo 2 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (1): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (1): Ho ricevuto richiesta di accoppiamento BROADCAST dal nodo corretto! Nodo: 1 accoppiato con nodo: 2.
+ Invio messaggio UNICAST per conferma.
+
+DEBUG (1): Invio un messaggio in UNICAST al nodo 2 al tempo 0:0:9.770431520 per stoppare messaggi BROADCAST. Nodo trovato.
+
+DEBUG (4): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (4): Ho ricevuto richiesta di accoppiamento BROADCAST dal nodo corretto! Nodo: 4 accoppiato con nodo: 3.
+ Invio messaggio UNICAST per conferma.
+
+DEBUG (2): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (2): Il messaggio BROADCAST ricevuto dal nodo 3 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (1): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (1): Il messaggio BROADCAST ricevuto dal nodo 3 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (4): Invio un messaggio in UNICAST al nodo 3 al tempo 0:0:9.774063091 per stoppare messaggi BROADCAST. Nodo trovato.
+
+Il messaggio UNICAST numero 0 e' stato inviato correttamente al nodo 3 
+
+		 Contenuto del messaggio unicast 
+			 Contatore: 0 
+ 			 Tipo: 2 
+			 Conferma: 1 
+
+
+ DEBUG (2): Ho ricevuto un messaggio di tipo UNICAST.
+
+DEBUG (2): Non mando altri messaggi BROADCAST
+DEBUG (2): Accoppiamento UNICAST effettuato
+
+DEBUG (3): Ho ricevuto un messaggio di tipo UNICAST.
+
+DEBUG (3): Non mando altri messaggi BROADCAST
+DEBUG (3): Accoppiamento UNICAST effettuato
+
+DEBUG (1): Timer0 scattato al tempo 0:0:14.648437510. Invio messaggio BROADCAST per accoppiamento.
+
+DEBUG (1): Messaggio BROADCAST numero 2 - Tempo: 0:0:14.648437520 
+Il messaggio BROADCAST numero 2 e' stato inviato 
+
+		 Contenuto del messaggio broadcast: 
+			 Chiave: 11111111111111111111
+			 Indirizzo: 1 
+			 Tipo: 1 
+
+
+DEBUG (4): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (4): Il messaggio BROADCAST ricevuto dal nodo 1 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (3): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (3): Il messaggio BROADCAST ricevuto dal nodo 1 non ha come mittente il nodo con il quale devo accoppiarmi.
+
+DEBUG (2): Ho ricevuto un messaggio di tipo BROADCAST.
+
+DEBUG (2): Ho ricevuto richiesta di accoppiamento BROADCAST dal nodo corretto! Nodo: 2 accoppiato con nodo: 1.
+ Invio messaggio UNICAST per conferma.
+
+DEBUG (2): Invio un messaggio in UNICAST al nodo 1 al tempo 0:0:14.656875591 per stoppare messaggi BROADCAST. Nodo trovato.
+
+Il messaggio UNICAST numero 0 e' stato inviato correttamente al nodo 1 
+
+		 Contenuto del messaggio unicast 
+			 Contatore: 0 
+ 			 Tipo: 2 
+			 Conferma: 1 
+
+
+ DEBUG (4): Timer1 scattato al tempo 0:0:14.657226572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:0:14.657226582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 14 
+ 			 Coordinata X: 181 
+			 Coordinata Y: 64 
+
+
+DEBUG (1): Ho ricevuto un messaggio di tipo UNICAST.
+
+DEBUG (1): Non mando altri messaggi BROADCAST
+DEBUG (1): Accoppiamento UNICAST effettuato
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 14.
+		Coordinata figlio (181, 64).
+
+
+DEBUG (3): ATTENZIONE! Il figlio e' caduto.
+
+
+DEBUG (3): Invio un messaggio seriale
+
+DEBUG (2): Timer1 scattato al tempo 0:0:19.541015635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:0:19.541015645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 11 
+ 			 Coordinata X: 211 
+			 Coordinata Y: 141 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 11.
+		Coordinata figlio (211, 141).
+DEBUG (4): Timer1 scattato al tempo 0:0:24.422851572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:0:24.422851582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 11 
+ 			 Coordinata X: 140 
+			 Coordinata Y: 233 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 11.
+		Coordinata figlio (140, 233).
+DEBUG (2): Timer1 scattato al tempo 0:0:29.306640635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:0:29.306640645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 135 
+			 Coordinata Y: 88 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (135, 88).
+DEBUG (4): Timer1 scattato al tempo 0:0:34.188476572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:0:34.188476582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 249 
+			 Coordinata Y: 82 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (249, 82).
+DEBUG (2): Timer1 scattato al tempo 0:0:39.072265635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:0:39.072265645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 252 
+			 Coordinata Y: 203 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (252, 203).
+DEBUG (4): Timer1 scattato al tempo 0:0:43.954101572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:0:43.954101582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 14 
+ 			 Coordinata X: 249 
+			 Coordinata Y: 171 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 14.
+		Coordinata figlio (249, 171).
+
+
+DEBUG (3): ATTENZIONE! Il figlio e' caduto.
+
+
+DEBUG (3): Invio un messaggio seriale
+
+DEBUG (2): Timer1 scattato al tempo 0:0:48.837890635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:0:48.837890645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 201 
+			 Coordinata Y: 0 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (201, 0).
+DEBUG (4): Timer1 scattato al tempo 0:0:53.719726572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:0:53.719726582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 106 
+			 Coordinata Y: 127 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (106, 127).
+DEBUG (2): Timer1 scattato al tempo 0:0:58.603515635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:0:58.603515645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 166 
+			 Coordinata Y: 25 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (166, 25).
+DEBUG (4): Timer1 scattato al tempo 0:1:3.485351572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:1:3.485351582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 11 
+ 			 Coordinata X: 118 
+			 Coordinata Y: 85 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 11.
+		Coordinata figlio (118, 85).
+DEBUG (2): Timer1 scattato al tempo 0:1:8.369140635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:8.369140645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 71 
+			 Coordinata Y: 51 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (71, 51).
+DEBUG (4): Timer1 scattato al tempo 0:1:13.250976572. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (4): Genero stato e coordinate da inviare a padre.
+DEBUG (4): Pacchetto generato. Invio il messaggio al tempo 0:1:13.250976582.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 164 
+			 Coordinata Y: 237 
+
+
+DEBUG (3): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (3): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (164, 237).
+DEBUG (2): Timer1 scattato al tempo 0:1:18.134765635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:18.134765645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 252 
+			 Coordinata Y: 142 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (252, 142).
+DEBUG (2): Timer1 scattato al tempo 0:1:27.900390635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:27.900390645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 136 
+			 Coordinata Y: 17 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (136, 17).
+DEBUG (2): Timer1 scattato al tempo 0:1:37.666015635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:37.666015645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 224 
+			 Coordinata Y: 65 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (224, 65).
+DEBUG (2): Timer1 scattato al tempo 0:1:47.431640635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:47.431640645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 153 
+			 Coordinata Y: 23 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (153, 23).
+DEBUG (2): Timer1 scattato al tempo 0:1:57.197265635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:1:57.197265645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 12 
+ 			 Coordinata X: 184 
+			 Coordinata Y: 216 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 12.
+		Coordinata figlio (184, 216).
+DEBUG (2): Timer1 scattato al tempo 0:2:6.962890635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:2:6.962890645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 11 
+ 			 Coordinata X: 40 
+			 Coordinata Y: 195 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 11.
+		Coordinata figlio (40, 195).
+DEBUG (3): Timer2 scattato al tempo 0:2:11.854492197. Non ricevo informazioni figlio da 60 secondi. Avviso il padre.
+
+
+
+DEBUG (3): ATTENZIONE! Non ricevo informazioni da 60 secondi. L'ultima posizione rilevata e' (164, 237)
+
+
+
+DEBUG (3): Invio un messaggio seriale
+
+DEBUG (2): Timer1 scattato al tempo 0:2:16.728515635. Invio messaggio UNICAST con informazioni braccialetto figlio.
+
+DEBUG (2): Genero stato e coordinate da inviare a padre.
+DEBUG (2): Pacchetto generato. Invio il messaggio al tempo 0:2:16.728515645.
+		 Contenuto del messaggio informativo: 
+			 Tipo: 13 
+ 			 Coordinata X: 41 
+			 Coordinata Y: 107 
+
+
+DEBUG (1): Ho ricevuto un messaggio informativo da mio figlio
+
+DEBUG (1): Contenuto messaggio:
+		Lo stato del figlio è 13.
+		Coordinata figlio (41, 107).
